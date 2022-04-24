@@ -14,16 +14,14 @@
         update_cache: yes
         cache_valid_time: 3600
 
-    # - name: "Download pacote jenkins"
-    #   shell: wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
-    
     - name: "Download pacote jenkins"
       get_url:
         url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-        dest: ~/
+        dest: /tmp
     
     - name: "Adicionando chave repo jenkins"
-      shell: apt-key add ~/jenkins.io.key
+      shell: apt-key add /tmp/jenkins.io.key
+      become: yes
 
     - name: "Instalando pacotes em lote"
       become: yes
@@ -71,7 +69,10 @@
       shell: sudo apt-get update && sudo apt-get install terraform -y
 
     - name: "Instala jenkins"
-      shell: "apt-get install jenkins -y"
+      become: yes
+      apt:
+        pkg:
+          - jenkins
       ignore_errors: yes
       async: 50 # se demorar mais do que ~50 seconds ele continua
 
