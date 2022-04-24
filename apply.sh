@@ -8,7 +8,7 @@
 #####	E-MAIL:				walter0paulo@hotmail.com
 #####	DISTRO:				Ubuntu GNU/Linux
 #####	LICENÇA:			GPLv3
-#####	PROJETO:	        		
+#####	PROJETO:	        https://github.com/walterpaulo/terraform-ansible-aws-jenkins		
 
 DIR=terraform/
 
@@ -27,8 +27,8 @@ DNS=$(echo $DNS | sed -e "s/\"//g")
 echo "
 [Jenskins]
 $DNS
-" > ../ansible/hosts
+" > ../jenkins-ansible/hosts
 
-ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ../ansible/hosts ../ansible/provisionar.yml -u ubuntu --private-key $private_key
+ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ../jenkins-ansible/hosts ../jenkins-ansible/provisionar.yml -u ubuntu --private-key $private_key
 ssh -i $private_key ubuntu@$DNS -o ServerAliveInterval=60
 
