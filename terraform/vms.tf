@@ -8,6 +8,6 @@ resource "aws_instance" "vm" {
   ]
 
   tags = {
-    Name = "NomeInstancia"
+    Name = "Jenskins"
   }
 }

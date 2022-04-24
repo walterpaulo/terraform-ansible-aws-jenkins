@@ -25,7 +25,7 @@ DNS=$(terraform output public_dns)
 DNS=$(echo $DNS | sed -e "s/\"//g")
 
 echo "
-[NomeEstancia]
+[Jenskins]
 $DNS
 " > ../ansible/hosts
 

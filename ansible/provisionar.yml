@@ -1,9 +1,9 @@
 - hosts:
-  - NomeEstancia
+  - Jenskins
 
   tasks:
     - name: "Renomear maquina"
-      shell: hostnamectl set-hostname NomeEstancia
+      shell: hostnamectl set-hostname Jenskins
       become: yes
 
     - name: "Atualizando pacotes"
