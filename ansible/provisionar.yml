@@ -1,0 +1,18 @@
+- hosts:
+  - NomeEstancia
+
+  tasks:
+    - name: "Renomear maquina"
+      shell: hostnamectl set-hostname NomeEstancia
+      become: yes
+
+    - name: "Atualizando pacotes"
+      become: yes
+      apt:  
+        name: "*"
+        state: latest 
+        update_cache: yes
+        cache_valid_time: 3600
+
+  # Rodando ansible
+  # ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key ./ssh/id_rsa
