@@ -89,10 +89,11 @@
     - debug:
         msg: "Segredo do jenkins: '{{ ps.stdout_lines }}' "
         # msg: "Segredo do jenkins: '{{ ps.stderr_lines }}' " # quando quiser ver o erro
+      become: yes
 
     - name: "Copia chave privada"
       copy:
-        src: "/Users/danilo/Desktop/desafio_devops/terraform/ssh/id_rsa"
+        src: "$private_key"
         dest: "/var/lib/jenkins/id_rsa"
         owner: jenkins
         group: jenkins
