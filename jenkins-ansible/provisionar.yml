@@ -14,5 +14,19 @@
         update_cache: yes
         cache_valid_time: 3600
 
+    - name: "Download pacote jenkins"
+      shell: wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+
+    - name: "Instalando pacotes em lote"
+      become: yes
+      apt:
+        pkg:
+          - maven
+          - unzip
+          - awscli
+          - default-jdk
+          - ansible
+
+    
   # Rodando ansible
   # ansible-playbook -i hosts provisionar.yml -u ubuntu --private-key ./ssh/id_rsa
