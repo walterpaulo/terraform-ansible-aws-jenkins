@@ -1,6 +1,6 @@
 resource "aws_security_group" "liberar_portas" {
   name        = "liberar_portas"
-  description = "Liberar as  22(ssh) e 80(http)"
+  description = "Liberar as  22(ssh) e 8080(http)"
 
   ingress = [
     {
@@ -15,8 +15,8 @@ resource "aws_security_group" "liberar_portas" {
       self             = null
     },
     {
-      from_port        = 80
-      to_port          = 80
+      from_port        = 8080
+      to_port          = 8080
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
