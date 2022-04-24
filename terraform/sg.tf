@@ -7,7 +7,7 @@ resource "aws_security_group" "liberar_portas" {
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks      = ["${chomp(data.http.myip.body)}/32"]
       ipv6_cidr_blocks = ["::/0"]
       description      = "Servico ssh"
       prefix_list_ids  = null
@@ -32,7 +32,7 @@ resource "aws_security_group" "liberar_portas" {
       from_port        = 0
       to_port          = 0
       protocol         = "-1"
-      cidr_blocks      = ["${chomp(data.http.myip.body)}/32"]
+      cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
       description      = "Liberacao geral na parte interna"
       prefix_list_ids  = null
