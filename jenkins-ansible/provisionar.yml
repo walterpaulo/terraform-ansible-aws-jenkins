@@ -14,8 +14,16 @@
         update_cache: yes
         cache_valid_time: 3600
 
+    # - name: "Download pacote jenkins"
+    #   shell: wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+    
     - name: "Download pacote jenkins"
-      shell: wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
+      get_url:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        dest: ~/
+    
+    - name: "Adicionando chave repo jenkins"
+      shell: apt-key add ~/jenkins.io.key
 
     - name: "Instalando pacotes em lote"
       become: yes
@@ -29,6 +37,7 @@
           - mysql-server
           - python3-pycurl
           - python3-mysqldb
+          - wget
 
     - name: "Lavanta serviço do mysql"
       service:
